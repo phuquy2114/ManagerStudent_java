@@ -33,6 +33,7 @@ public class ManagerStudent {
         student.setName(Validator.getString(scanner, "Name: "));
         student.setAge(Validator.getInt(scanner, "Age: "));
         student.setAddress(Validator.getString(scanner, "Address: "));
+        scanner.nextLine(); // hai kieu du lieu dang trinh tu voi nhau
         student.setCourse(Validator.getString(scanner, "Course: "));
         student.setMediumScore(Validator.getFloat(scanner, "Medium Score: "));
         return student;
@@ -46,8 +47,13 @@ public class ManagerStudent {
         System.out.println("Show All Student List:");
         for (int i = 0; i < studentList.size(); i++) {
             Student st = studentList.get(i);
-            System.out.println(st)
-            ;
+            System.out.println("----------------");
+            System.out.println("ID " + st.getId());
+            System.out.println("Name " + st.getName());
+            System.out.println("Age " + st.getAge());
+            System.out.println("Address " + st.getAddress());
+            System.out.println("Course " + st.getCourse());
+            System.out.println("Medium Score " + st.getMediumScore());
         }
     }
 
@@ -92,6 +98,23 @@ public class ManagerStudent {
             System.out.println(course);
     }
 
+    public void searchCourse(String course) {
+        System.out.println("Search Course of the Students");
+        course = course.toLowerCase();
+        int d = 0;
+
+        for (Student st : studentList) {
+            String courseData = st.getCourse().toLowerCase();
+            if ((courseData.contains(course))) {
+                outputStudent(st);
+                d++;
+            }
+        }
+
+        if (d == 0)
+            System.out.println("No matching results were found");
+    }
+
     public void searchStudent(String search) {
         System.out.println("Search Student by ID or Name:");
         search = search.toLowerCase();
@@ -101,13 +124,22 @@ public class ManagerStudent {
             String id = st.getId().toLowerCase();
             String name = st.getName().toLowerCase();
             if ((id.contains(search)) || (name.contains(search))) {
-                System.out.println(st)
-                ;
+                outputStudent(st);
                 d++;
             }
         }
 
         if (d == 0)
             System.out.println("No matching results were found");
+    }
+
+    public void outputStudent(Student st) {
+        System.out.println("----------------");
+        System.out.println("ID " + st.getId());
+        System.out.println("Name " + st.getName());
+        System.out.println("Age " + st.getAge());
+        System.out.println("Address " + st.getAddress());
+        System.out.println("Course " + st.getCourse());
+        System.out.println("Medium Score " + st.getMediumScore());
     }
 }

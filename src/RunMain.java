@@ -39,7 +39,8 @@ public class RunMain {
                     System.out.println();
                 }
                 case 4 -> {
-                    studentManager.showAllCourseList();
+                    String search = Validator.getString(scanner, "Enter Course for search: ");
+                    studentManager.searchCourse(search);
                     System.out.println();
                 }
                 case 5 -> {
